@@ -13,7 +13,7 @@ function parseInteger(value: string, field: string): number {
   return number;
 }
 
-export function parseHackerNews(html: string) {
+export function parseScrapperNews(html: string) {
   const $ = load(html);
   const rows = $("tr.athing").slice(0, ENTRY_LIMIT);
 
@@ -42,12 +42,14 @@ export function parseHackerNews(html: string) {
       throw new Error(`Missing metadata for entry ${rankText}`);
     }
 
+    // rank
     const rank = parseInteger(rankText.slice(0, -1), "rank");
 
     if (rank < 1) {
       throw new Error("Entry rank must be positive");
     }
 
+    // points or score
     const score = metadata.find(".score");
     let points = 0;
 
@@ -62,6 +64,7 @@ export function parseHackerNews(html: string) {
       points = parseInteger(match[1], "points");
     }
 
+    // comments
     const commentText = metadata
       .find("a")
       .toArray()

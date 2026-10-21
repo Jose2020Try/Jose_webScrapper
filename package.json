@@ -1,5 +1,5 @@
 {
-  "name": "hacker-news-crawler",
+  "name": "scrapper-news-crawler",
   "version": "0.1.0",
   "private": true,
   "scripts": {
