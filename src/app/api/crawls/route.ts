@@ -5,7 +5,11 @@ export async function POST(): Promise<Response> {
   try {
     const result = await createCrawl.execute();
 
-    return Response.json(result);
+    return Response.json(result, {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
   } catch (error) {
     console.error("Failed to execute crawl:", error);
 
