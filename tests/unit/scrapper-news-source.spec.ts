@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { EntrySourceError } from "../../src/application/ports/entry-source";
-import { ScrapperNewsSource } from "@/Infrastructure/scraping/scrapper-news-source";
+import { ScrapperNewsSource } from "@/infrastructure/scraping/scrapper-news-source";
 import { createPage } from "../fixtures/scrapper-news";
 
 test.describe("ScrapperNewsSource", () => {

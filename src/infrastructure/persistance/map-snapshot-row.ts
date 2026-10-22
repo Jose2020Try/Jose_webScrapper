@@ -1,12 +1,6 @@
 import { z } from "zod";
 import type { CrawlSnapshot } from "../../domain/crawl-snapshot";
-
-const entrySchema = z.object({
-  rank: z.number().int().positive(),
-  title: z.string().trim().min(1),
-  points: z.number().int().nonnegative(),
-  comments: z.number().int().nonnegative(),
-});
+import { entrySchema } from "../../contracts/entry-schema";
 
 const snapshotRowSchema = z.object({
   id: z.string().uuid(),

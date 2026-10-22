@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { parseScrapperNews } from "../../src/Infrastructure/scraping/parse-scrapper-news";
+import { parseScrapperNews } from "@/infrastructure/scraping/parse-scrapper-news";
 import { createRow, createPage } from "../fixtures/scrapper-news";
 
   test.describe("parseScrapperNews",() => {

@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { mapSnapshotRow } from "@/Infrastructure/persistance/map-snapshot-row";
+import { mapSnapshotRow } from "@/infrastructure/persistance/map-snapshot-row";
 
 function createRow() {
   return {
