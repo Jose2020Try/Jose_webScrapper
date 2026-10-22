@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "test": "playwright test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:browser": "playwright test --project=browser",
+    "test:browser:headed": "playwright test --project=browser --headed",
+    "test:report": "playwright show-report"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",
