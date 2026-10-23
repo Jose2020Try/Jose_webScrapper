@@ -7,14 +7,14 @@ import { entrySchema } from "@/contracts/entry-schema";
 import styles from "./crawler.module.css";
 
 const snapshotSchema = z.object({
-  id: z.string().uuid(),
-  capturedAt: z.string().datetime(),
+  id: z.uuid(),
+  capturedAt: z.iso.datetime(),
   entries: z.array(entrySchema).length(30),
 });
 
 const filteredResultSchema = z.object({
-  snapshotId: z.string().uuid(),
-  capturedAt: z.string().datetime(),
+  snapshotId: z.uuid(),
+  capturedAt: z.iso.datetime(),
   filter: z.enum(["all", "long-title", "short-title"]),
   entries: z.array(entrySchema).max(30),
 });
@@ -37,7 +37,7 @@ const filters: Array<{
 ];
 
 const descriptions: Record<EntryFilter, string> = {
-  all: "Original Hacker News ranking.",
+  "all": "Original Hacker News ranking.",
   "long-title":
     "Titles with more than 5 words, sorted by comments descending.",
   "short-title":
