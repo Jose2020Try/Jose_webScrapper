@@ -10,6 +10,7 @@ export interface UsageEvent {
   readonly status: "success" | "error";
 }
 
+// interface segregation principle, dependency inversion principle
 export interface UsageRepository {
   save(event: UsageEvent): Promise<void>;
 }

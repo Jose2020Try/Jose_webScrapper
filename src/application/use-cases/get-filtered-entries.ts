@@ -4,6 +4,7 @@ import type { SnapshotRepository } from "../ports/snapshot-repository";
 import type { UsageRepository } from "../ports/usage-repository";
 import { runWithUsage } from "../services/run-with-usage";
 
+// dependency inversion principle, interface segregation principle
 export interface GetFilteredEntriesDependencies {
   snapshots: SnapshotRepository;
   usage: UsageRepository;
@@ -24,11 +25,13 @@ export class SnapshotNotFoundError extends Error {
   }
 }
 
+// single responsibility principle, dependency inversion principle
 export class GetFilteredEntries {
   constructor(
     private readonly dependencies: GetFilteredEntriesDependencies,
   ) {}
 
+  // single responsibility principle
   async execute(
     snapshotId: string,
     filter: EntryFilter,
@@ -37,6 +40,7 @@ export class GetFilteredEntries {
       this.dependencies,
       { operation: "filter", filter },
       async () => {
+        // dependency inversion principle, liskov substitution principle
         const snapshot =
           await this.dependencies.snapshots.findById(snapshotId);
 
@@ -44,6 +48,7 @@ export class GetFilteredEntries {
           throw new SnapshotNotFoundError();
         }
 
+        // single responsibility principle
         const entries = filterEntries(snapshot.entries, filter);
 
         return {

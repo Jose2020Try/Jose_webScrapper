@@ -4,6 +4,7 @@ import type { SnapshotRepository } from "../ports/snapshot-repository";
 import type { UsageRepository } from "../ports/usage-repository";
 import { runWithUsage } from "../services/run-with-usage";
 
+// dependency inversion principle, interface segregation principle
 export interface CreateCrawlDependencies {
   source: EntrySource;
   snapshots: SnapshotRepository;
@@ -12,11 +13,13 @@ export interface CreateCrawlDependencies {
   newId: () => string;
 }
 
+// single responsibility principle, dependency inversion principle
 export class CreateCrawl {
   constructor(
     private readonly dependencies: CreateCrawlDependencies,
   ) {}
 
+  // single responsibility principle
   async execute(): Promise<CrawlSnapshot> {
     const { source, snapshots, now, newId } = this.dependencies;
 
@@ -24,6 +27,7 @@ export class CreateCrawl {
       this.dependencies,
       { operation: "crawl", filter: null },
       async () => {
+        // dependency inversion principle, liskov substitution principle
         const entries = await source.getEntries();
 
         const snapshot: CrawlSnapshot = {
@@ -32,6 +36,7 @@ export class CreateCrawl {
           entries,
         };
 
+        // dependency inversion principle, liskov substitution principle
         await snapshots.save(snapshot);
 
         return {

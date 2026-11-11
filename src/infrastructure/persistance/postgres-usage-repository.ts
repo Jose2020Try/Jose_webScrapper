@@ -4,9 +4,12 @@ import type {
   } from "../../application/ports/usage-repository";
   import type { Database } from "./database";
   
+  // liskov substitution principle, open/closed principle, dependency inversion principle
   export class PostgresUsageRepository implements UsageRepository {
+    // dependency inversion principle
     constructor(private readonly database: Database) {}
   
+    // single responsibility principle
     async save(event: UsageEvent): Promise<void> {
       await this.database`
         INSERT INTO usage_events (

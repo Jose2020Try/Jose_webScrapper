@@ -8,12 +8,14 @@ import { PostgresSnapshotRepository } from "@/infrastructure/persistance/postgre
 import { PostgresUsageRepository } from "@/infrastructure/persistance/postgres-usage-repository";
 import { GetFilteredEntries } from "@/application/use-cases/get-filtered-entries";
 
+// dependency inversion principle, open/closed principle, liskov substitution principle
 const entrySource = new ScrapperNewsSource(fetch);
 const database = createDatabase();
 
 const snapshots = new PostgresSnapshotRepository(database);
 const usage = new PostgresUsageRepository(database);
 
+// dependency inversion principle
 export const createCrawl = new CreateCrawl({
   source: entrySource,
   snapshots,
@@ -22,6 +24,7 @@ export const createCrawl = new CreateCrawl({
   newId: randomUUID,
 });
 
+// dependency inversion principle
 export const getFilteredEntries = new GetFilteredEntries({
     snapshots,
     usage,

@@ -3,6 +3,7 @@ import type {
     UsageRepository,
   } from "../ports/usage-repository";
   
+  // dependency inversion principle, interface segregation principle
   interface Dependencies {
     usage: UsageRepository;
     now: () => Date;
@@ -23,6 +24,7 @@ import type {
     | { ok: true; result: OperationResult<T> }
     | { ok: false; error: unknown };
   
+  // single responsibility principle, open/closed principle
   export async function runWithUsage<T>(
     dependencies: Dependencies,
     operation: Operation,

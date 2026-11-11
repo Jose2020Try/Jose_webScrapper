@@ -1,6 +1,7 @@
 import { EntrySourceError } from "@/application/ports/entry-source";
 import { createCrawl } from "@/composition/dependencies";
 
+// single responsibility principle
 export async function POST(): Promise<Response> {
   try {
     const result = await createCrawl.execute();
@@ -13,6 +14,7 @@ export async function POST(): Promise<Response> {
   } catch (error) {
     console.error("Failed to execute crawl:", error);
 
+    // single responsibility principle, liskov substitution principle
     if (error instanceof EntrySourceError) {
       return Response.json(
         {

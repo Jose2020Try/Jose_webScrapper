@@ -8,9 +8,12 @@ import { parseScrapperNews } from "./parse-scrapper-news";
 const SCRAPPER_NEWS_URL = "https://news.ycombinator.com/";
 const REQUEST_TIMEOUT_MS = 10_000;
 
+// liskov substitution principle, open/closed principle, dependency inversion principle
 export class ScrapperNewsSource implements EntrySource {
+  // dependency inversion principle
   constructor(private readonly request: typeof fetch) {}
 
+  // single responsibility principle
   async getEntries(): Promise<Entry[]> {
     let html: string;
 

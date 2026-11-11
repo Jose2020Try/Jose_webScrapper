@@ -3,11 +3,14 @@ import type { SnapshotRepository } from "../../application/ports/snapshot-reposi
 import type { Database } from "./database";
 import { mapSnapshotRow } from "./map-snapshot-row";
 
+// liskov substitution principle, open/closed principle, dependency inversion principle
 export class PostgresSnapshotRepository
   implements SnapshotRepository
 {
+  // dependency inversion principle
   constructor(private readonly database: Database) {}
 
+  // single responsibility principle
   async save(snapshot: CrawlSnapshot): Promise<void> {
     await this.database`
       INSERT INTO crawl_snapshots (

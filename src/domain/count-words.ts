@@ -1,3 +1,4 @@
+// single responsibility principle
 export function countWords(title: string): number {
     return title
       .split(/\s+/u)

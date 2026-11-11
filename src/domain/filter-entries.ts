@@ -1,6 +1,7 @@
 import { countWords } from "./count-words";
 import type { Entry, EntryFilter } from "./entry";
 
+// single responsibility principle
 export function filterEntries(
   entries: readonly Entry[],
   filter: EntryFilter,
