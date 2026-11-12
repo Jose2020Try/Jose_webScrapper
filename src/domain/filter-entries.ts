@@ -21,5 +21,11 @@ export function filterEntries(
         .filter((entry) => countWords(entry.title) <= 5)
         .sort((a, b) => b.points - a.points || a.rank - b.rank);
     // sorting by descending if not then orginal position is being used.
+
+    case "very-short-title":
+      return entries
+        .filter((entry) => countWords(entry.title) <= 3)
+        .sort((a, b) => b.points - a.points || a.rank - b.rank);
+    // sorting by descending if not then orginal position is being used.
   }
 }

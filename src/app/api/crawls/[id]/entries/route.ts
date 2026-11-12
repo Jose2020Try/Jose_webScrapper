@@ -4,7 +4,7 @@ import { SnapshotNotFoundError } from "@/application/use-cases/get-filtered-entr
 
 const inputSchema = z.object({
   id: z.string().uuid(),
-  filter: z.enum(["all", "long-title", "short-title"]),
+  filter: z.enum(["all", "long-title", "short-title", "very-short-title"]),
 });
 
 function json(body: unknown, status = 200): Response {

@@ -15,7 +15,7 @@ const snapshotSchema = z.object({
 const filteredResultSchema = z.object({
   snapshotId: z.uuid(),
   capturedAt: z.iso.datetime(),
-  filter: z.enum(["all", "long-title", "short-title"]),
+  filter: z.enum(["all", "long-title", "short-title", "very-short-title"]),
   entries: z.array(entrySchema).max(30),
 });
 
@@ -34,6 +34,7 @@ const filters: Array<{
   { value: "all", label: "All entries" },
   { value: "long-title", label: "More than 5 words" },
   { value: "short-title", label: "5 words or fewer" },
+  { value: "very-short-title", label: "3 words or fewer" },
 ];
 
 const descriptions: Record<EntryFilter, string> = {
@@ -42,6 +43,8 @@ const descriptions: Record<EntryFilter, string> = {
     "Titles with more than 5 words, sorted by comments descending.",
   "short-title":
     "Titles with 5 words or fewer, sorted by points descending.",
+  "very-short-title":
+    "Titles with 3 words or fewer, sorted by points descending.",
 };
 
 async function requestJson(

@@ -41,3 +41,12 @@ CREATE TABLE usage_events (
   CONSTRAINT valid_status
     CHECK (status IN ('success', 'error'))
 );
+
+ALTER TABLE usage_events DROP CONSTRAINT valid_filter;
+
+ALTER TABLE usage_events
+ADD CONSTRAINT valid_filter
+  CHECK (
+    applied_filter IS NULL
+    OR applied_filter IN ('all', 'long-title', 'short-title', 'very-short-title')
+  );

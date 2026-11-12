@@ -61,10 +61,17 @@ test.describe("filterEntries", () => {
     expect(result).not.toBe(entries);
   });
 
+  test("includes three-word titles and sorts by points, then original rank", () => {
+    const result = filterEntries(entries, "very-short-title");
+
+    expect(result.map((entry) => entry.rank)).toEqual([1]);
+  });
+
   const filters: EntryFilter[] = [
     "all",
     "long-title",
     "short-title",
+    "very-short-title",
   ];
 
   for (const filter of filters) {

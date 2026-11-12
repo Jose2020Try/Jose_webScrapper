@@ -5,4 +5,4 @@ export interface Entry {
     readonly comments: number;
   }
   
-  export type EntryFilter = "all" | "long-title" | "short-title";
+  export type EntryFilter = "all" | "long-title" | "short-title" | "very-short-title";
